@@ -1,0 +1,277 @@
+body {
+    /* 사각형 좀 붙여놓기 */
+    margin: 0;
+    padding: 0;
+}
+
+
+.header { 
+    width: 100%;
+    height: 80px;
+    /* border: 1px solid; */
+
+    /* li 를 옆으로 밀기 */
+    display: flex;
+    justify-content: flex-end;
+
+    position: absolute;
+        /* body 태그를 기준으로 움직이고, 다른 영역을 침범하지 않아  */
+        /* 겹쳐야 할 때 이렇게 함 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐  */
+        /* overlay 와 관련 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐  */
+
+    top: -80px;
+    transition: 1s;
+
+    /* 여기에 사라지는 애니메이션 넣어주면 또 사라짐 */
+
+}
+
+
+/* 스크롤 이동하면서 > 따라붙게 하는 거 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ */
+.header .isActive{
+    position: fixed;
+    
+    top: 0;
+
+    /* top 이 딱 닿으면 -> 변한다.  */
+    animation : headerAni 1s
+}
+
+
+
+.header ul {
+    display: flex;
+    /* align-items: center; */
+    
+    /* 앞에 있는 점 지우자 */
+    list-style: none;
+    
+
+}
+
+.header ul li{
+    /* 조금 떼어놓자 */
+    margin: 15px;
+
+}
+
+/* header 옆 로고 */
+.header::before {
+    content : "B";
+    background-color: #00c9b7;
+    
+    width: 50px;
+    height: 50px;
+
+    color: #fff;
+    font-weight: 900;
+    font-size: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    position: absolute;
+    left: 15px;
+    
+    border-radius: 50%;
+
+
+}
+
+
+.header::after {
+    content: "itKunst";
+
+    position: absolute;
+    left: 45px;
+
+    font-size: 28px;
+    font-weight: 900;
+
+    /* ⭐position 속성⭐ 이 있을 때, order 를 설정할 수 있다. ⭐ */
+    /* 앞에 올지, 뒤에 올지 ⭐⭐ */
+    z-index: 1;
+}
+
+
+/* main content-01 --------------------------------------------------------------------- */
+
+.main {
+    /* 브라우저의 높이로 잡음 */
+    /* view height 브라우저 높이 */
+    width: 100%;
+    height: 100vh;
+        /*  head 가 있기 때문에 떨어진거야 > 그래서 스크롤이 생김 */
+        /* 위에 header 의 position 을 abolute 로 함 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ */
+    /* background-color: red; */
+    
+    position: relative;
+
+    z-index: -1;
+
+}
+
+
+.main .content-01 {
+    width: 100%;
+    height: 100%;
+}
+
+
+.overlay {
+    width: 50%;
+    height: 100%;
+    background-color: #00c9b7;
+    opacity: 0.1;
+}
+
+
+.content-01 .text-wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+}
+
+
+
+.content-01 .text-wrap p {
+    /* key 컬러 하나씩 잡음 */
+    color: #00c9b7;
+
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+
+.content-01 .text-wrap h1 {
+    margin: 0;
+    padding: 0;
+
+    font-size: 54px;
+
+}
+
+.content-01 .text-wrap h2 {
+    margin: 15px 0 0 0;
+    padding: 0;
+
+    font-size: 30px;
+}
+
+/* 3depth 까지만!!!!!!!! ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ / 클래스 있고 3depth ⭐⭐⭐⭐⭐⭐ 
+    태그만으로 잡고 3depth 로 하지 말것 ⭐⭐⭐⭐⭐⭐ */
+.text-wrap h2 span {
+
+    color: #00c9b7;
+    position: relative;
+    
+}
+
+.text-wrap h2 span::before {
+    content: "";
+
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    color: #00c9b7;
+    bottom: -5px;
+
+}
+
+
+.content-01 .mouse {
+    position: absolute;
+    background-color: #edf0ff;
+
+    width: 70px;
+    height: 70px;
+
+    /* border-radius: 50%; */
+    bottom: 120px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+
+}
+
+
+/* 부모를 뼈대, 자식을 화살표로 만들기 */
+.content-01 .mouse .arrow {
+    height: 20px;
+    width: 1px;
+    background-color: #00c9b7;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;  
+
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 2px;
+
+    /* 사라지게 하기  */
+    animation: ani 1s infinite;
+}
+
+
+.content-01 .mouse .arrow::before
+.content-01 .mouse .arrow::after {
+    /* content: "\f118"; -> 이건 라이브러리 적용*/ 
+    content: "";
+    width: 2px;
+    height: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 4px;
+
+    transform: rotate(-45deg);
+    background-color: #00c9b7;
+    
+
+}
+
+
+.content-01 .mouse .arrow::after {
+    left: -4px;
+    transform: rotate(-45deg);
+}
+
+
+/* 화살표 애니메이션 : 사라지게 하기 */
+@keyframes ani{
+    from {
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        /* opacity: 1; */
+        
+    }
+    to {
+        left: 80%;
+        transform: translate(-60%, -12%) rotate(-45deg);
+        /* opacity: 0; */
+    }
+}
+
+/*  상단 내려오는 애니메이션 */
+@keyframes headerAni {
+
+    from {
+        top : -80px
+    }
+    to {
+
+    }
+}
+
+
+.conten-02 {
+    width: 100%;
+    height: 500px;
+
+    background-color: antiquewhite;
+}
